@@ -1,38 +1,233 @@
-.App {
-  text-align: center;
+.site-view {
+  padding: 30px;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.visualizer-main {
+  position: relative;
+  overflow: hidden;
+  background: green;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.visualizer-room {
+  position: relative;
+  perspective: 1000px;
+  height: 850px;
+  object-fit: cover;
+  z-index: 2;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.visualizer-room__image {
+  object-fit: cover;
+  object-position: bottom;
+  width: 100%;
+  height: 100%;
+}
+
+.controls-panel {
   display: flex;
+  gap: 10px;
+  padding: 5px;
+  align-items: flex-start;
   flex-direction: column;
+  background: #fff;
+  border: 2px solid #54735d;
+}
+
+.controls-panel h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.control__button {
+  background: #54735d;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px 10px;
+  margin-right: 15px;
+  border: none;
+}
+
+.control__button-action {
+  background: blue;
+}
+
+.control__button-delete {
+  background: rgb(235, 0, 0);
+}
+
+.controls .control {
+  padding: 0;
+}
+
+.control p {
+  margin: 0 0 5px;
+  background: #fff;
+}
+
+.visualizer-filters {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  width: 100%;
+  max-width: 90%;
+  margin: 10px auto;
+}
+
+.visualizer-floor {
+  display: block;
+  width: 100%;
+  background: none;
+  border-radius: 0;
+  color: #000;
+  margin: 0;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03rem;
+  text-decoration: none;
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  padding: 0;
+}
+
+.visualizer-filter select {
+  cursor: pointer;
+  color: #fff;
+  border-radius: 5px;
+  background: #54735d;
+  width: 100%;
+  text-align: center;
+  font-weight: 600;
+  padding: 5px 10px;
+}
+
+.visualizer-floor__image {
+  width: 100%;
+  height: 115px;
+  object-fit: cover;
+  margin-bottom: 5px;
+}
+
+.visualizer-slider .swiper {
+  max-width: 90%;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.visualizer-slider {
+  position: relative;
+}
+
+div.swiper-button-next,
+div.swiper-button-prev {
+  color: #fff;
+}
+
+span.swiper-pagination-bullet,
+span.swiper-pagination-bullet-active {
+  background: #fff;
+}
+
+.visualizer-slider-main > .swiper div.swiper-button-prev,
+.visualizer-slider-main > .swiper div.swiper-button-next {
+  padding: 5px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.visualizer-slider-main > .swiper div.swiper-button-prev::after,
+.visualizer-slider-main > .swiper div.swiper-button-next::after {
+  font-size: 1.8rem;
+}
+
+div.visualizer-slider-prev {
+  color: #54735d;
+}
+
+.add-new {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  max-width: 90%;
+  width: 100%;
+  margin: 10px auto;
 }
 
-.App-link {
-  color: #61dafb;
+@media (max-width: 767px) {
+  .visualizer-room {
+    height: 450px;
+  }
+  div.visualizer-slider-prev {
+    left: -10px;
+  }
+  div.visualizer-slider-next {
+    right: -10px;
+  }
+  .visualizer-floor__image {
+    height: 60px;
+  }
+  .site-view {
+    padding: 30px 15px;
+  }
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+div.visualizer-slider-next {
+  color: #54735d;
+}
+
+div.visualizer-slider-prev::after,
+div.visualizer-slider-next::after {
+  font-size: 2rem;
+}
+
+.backgrounds {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 10px 5px;
+  background: #fff;
+  padding: 5px;
+  max-width: 260px;
+  width: 100%;
+}
+
+.backgrounds-image {
+  object-fit: cover;
+  width: 100%;
+  height: 80px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.control-url {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.control-url p {
+  margin: 0 5px 0 0;
+}
+
+.control-url input {
+  width: 50%;
+}
+
+.control input {
+  position: static;
+  -webkit-appearance: auto;
+  opacity: 1;
 }
