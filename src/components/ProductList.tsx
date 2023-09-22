@@ -28,13 +28,24 @@ const ProductList: React.FC<ProductListProps> = ({ setPatternUrl }) => {
     }, []);
 
     useEffect(() => {
+        const controller = new AbortController();
+
         fetch(`https://dev.admflooring.com/wp-json/custom/v1/products?color=${color}&grade=${grade}&texture=${texture}`, {
+            signal: controller.signal,
             method: 'GET',
         })
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
+            })
+            .catch(error => {
+                if (error.name !== 'AbortError') {
+                    console.error("Fetch failed:", error);
+                }
             });
+        return () => {
+            controller.abort();
+        }
     }, [color, grade, texture]);
 
     return (

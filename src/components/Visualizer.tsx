@@ -27,13 +27,23 @@ const Visualizer: React.FC<VisualizerProps> = ({ patternUrl }) => {
   const [backgrounds, setBackgrounds] = useState<Background[]>([]);
   const isAdmin = (window as any).wpData && (window as any).wpData.isAdmin === 'true';
   useEffect(() => {
+    const controller = new AbortController();
     fetch(`https://dev.admflooring.com/wp-json/custom/v1/backgrounds/`, {
+      signal: controller.signal,
       method: 'GET',
     })
       .then(response => response.json())
       .then(data => {
         setBackgrounds(data);
+      })
+      .catch(error => {
+        if (error.name !== 'AbortError') {
+          console.error("Fetch failed:", error);
+        }
       });
+    return () => {
+      controller.abort();
+    }
   }, []);
 
   return (
