@@ -5,17 +5,23 @@ import { Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 
-interface ProductListProps {
+type ProductListProps = {
+    productId: number;
     setPatternUrl: Dispatch<SetStateAction<string>>;
 }
 
-const ProductList: React.FC<ProductListProps> = ({ setPatternUrl }) => {
+const ProductList: React.FC<ProductListProps> = ({ productId, setPatternUrl }) => {
     const [products, setProducts] = useState<any[]>([]);
     const [color, setColor] = useState<string>("");
     const [grade, setGrade] = useState<string>("");
     const [texture, setTexture] = useState<string>("");
 
     const sliderRef = useRef<SwiperRef>(null);
+
+    const setInitialPattern = (productId: number, products: any[]) => {
+        const initialProduct = products.find(product => product.id === productId);
+        setPatternUrl(initialProduct.image_url);
+    }
 
     const handlePrev = useCallback(() => {
         if (!sliderRef.current?.swiper) return;
@@ -37,6 +43,7 @@ const ProductList: React.FC<ProductListProps> = ({ setPatternUrl }) => {
             .then(response => response.json())
             .then(data => {
                 setProducts(data);
+                setInitialPattern(productId, data);
             })
             .catch(error => {
                 if (error.name !== 'AbortError') {

@@ -12,11 +12,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 
-interface VisualizerProps {
+type VisualizerProps = {
   patternUrl: string;
 }
 
-interface Background {
+type Background = {
   id: number;
   title: string;
   image_url: string;
